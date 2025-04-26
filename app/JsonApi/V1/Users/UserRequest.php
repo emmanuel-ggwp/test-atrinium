@@ -31,6 +31,11 @@ class UserRequest extends ResourceRequest
                 $model ? 'filled' : 'required',
                 'string',
             ],
+            'phone' => [
+                $model ? 'filled' : 'required',
+                'string',
+                $unique,
+            ]
         ];
     }
 

@@ -39,6 +39,9 @@ class UserSchema extends Schema
             
             Str::make('password')
                 ->hidden(),
+
+            Str::make('phone')
+                ->sortable(),
             
             DateTime::make('emailVerifiedAt', 'email_verified_at')
                 ->sortable()
