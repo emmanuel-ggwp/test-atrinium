@@ -21,9 +21,9 @@ class UserPolicy
         return $user->id === $model->id || $user->can(PermissionEnum::VIEW_USER->value);
     }
 
-    public function create(User $user): bool
+    public function create(?User $user): bool
     {
-        return $user->can(PermissionEnum::CREATE_USER->value);
+        return true;
     }
 
     public function update(User $user, User $model): bool

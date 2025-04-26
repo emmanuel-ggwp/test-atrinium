@@ -11,3 +11,5 @@
   {
       return ['mail', 'database']; //Added database
   }
+
+- Make so not malicious person can create so many users, we can start with a rateLimit or one user by ip
