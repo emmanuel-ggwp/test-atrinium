@@ -1,0 +1,6 @@
+1: Descripción: Implementa un servicio de notificación por correo electrónico que
+permita a los nuevos usuarios solicitar cambios de rol a los administradores
+
+Nota: Significa que solo los usuario nuevos pueden solicitar cambio de rol?
+
+2: Los administradores pueden editar los roles de otros administradores?

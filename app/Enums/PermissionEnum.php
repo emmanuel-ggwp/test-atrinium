@@ -9,6 +9,7 @@ enum PermissionEnum: string
     case CREATE_USER = 'create-user';
     case UPDATE_USER = 'update-user';
     case DELETE_USER = 'delete-user';
+    case ASSIGN_ROLES_USER = 'assign-roles-user';
 
     public static function all(): array
     {

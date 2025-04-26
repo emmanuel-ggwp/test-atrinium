@@ -13,3 +13,5 @@
   }
 
 - Make so not malicious person can create so many users, we can start with a rateLimit or one user by ip
+
+- Add status (active, inactive), and new to users

@@ -27,6 +27,7 @@ enum RoleEnum: string
                 PermissionEnum::VIEW_ANY_USERS->value,
                 PermissionEnum::CREATE_USER->value,
                 PermissionEnum::UPDATE_USER->value,
+                PermissionEnum::ASSIGN_ROLES_USER->value,
             ],
             default => [],
         };
