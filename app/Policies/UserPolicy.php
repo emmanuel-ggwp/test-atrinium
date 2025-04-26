@@ -18,7 +18,7 @@ class UserPolicy
 
     public function view(User $user, User $model): bool
     {
-        return $user->can(PermissionEnum::VIEW_USER->value);
+        return $user->id === $model->id || $user->can(PermissionEnum::VIEW_USER->value);
     }
 
     public function create(User $user): bool
@@ -28,7 +28,7 @@ class UserPolicy
 
     public function update(User $user, User $model): bool
     {
-        return $user->can(PermissionEnum::UPDATE_USER->value);
+        return $user->id === $model->id || $user->can(PermissionEnum::UPDATE_USER->value);
     }
 
     public function delete(User $user, User $model): bool

@@ -32,7 +32,7 @@ class UserRequest extends ResourceRequest
                 'string',
             ],
             'phone' => [
-                $model ? 'filled' : 'required',
+                'nullable',
                 'string',
                 $unique,
             ]
