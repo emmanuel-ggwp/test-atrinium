@@ -1,1 +1,13 @@
 - The response for not having the rigth permissions is "This action is unauthorized." instead of "You do not have the rigth permissions"
+
+- Use a external service of mail like Mailgun, Postmark, Resend, and MailerSend, In case of use a own SMTP server remember to warm up so the mails send not get send to spam
+
+- If want to use notification bell in a front app run the following commands:
+  php artisan notifications:table
+  php artisan migrate
+
+  And add this to UserNewRoleNotification
+  public function via($notifiable)
+  {
+      return ['mail', 'database']; //Added database
+  }
