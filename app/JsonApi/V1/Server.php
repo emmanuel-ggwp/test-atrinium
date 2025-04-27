@@ -6,7 +6,8 @@ use App\JsonApi\V1\ActivityTypes\ActivityTypeSchema;
 use App\JsonApi\V1\Companies\CompanySchema;
 use App\JsonApi\V1\RoleAppeals\RoleAppealSchema;
 use App\JsonApi\V1\Users\UserSchema;
-use Auth;
+use App\Models\Company;
+use Illuminate\Support\Facades\Auth;
 use LaravelJsonApi\Core\Server\Server as BaseServer;
 
 class Server extends BaseServer
@@ -27,6 +28,9 @@ class Server extends BaseServer
     public function serving(): void
     {
         Auth::shouldUse('sanctum');
+        Company::creating(static function (Company $company): void {
+            $company->owner()->associate(Auth::user());
+        });
     }
 
     /**
