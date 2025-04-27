@@ -2,6 +2,8 @@
 
 namespace App\JsonApi\V1;
 
+use App\JsonApi\V1\ActivityTypes\ActivityTypeSchema;
+use App\JsonApi\V1\Companies\CompanySchema;
 use App\JsonApi\V1\RoleAppeals\RoleAppealSchema;
 use App\JsonApi\V1\Users\UserSchema;
 use Auth;
@@ -37,6 +39,8 @@ class Server extends BaseServer
         return [
             UserSchema::class,
             RoleAppealSchema::class,
+            CompanySchema::class,
+            ActivityTypeSchema::class,
         ];
     }
 }
