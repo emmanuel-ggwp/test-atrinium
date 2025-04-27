@@ -4,7 +4,7 @@ namespace App\Listeners;
 
 use Spatie\Permission\Events\RoleAttached;
 use App\Models\User;
-use App\Notifications\RoleAssignedNotification;
+use App\Notifications\RoleAssigned;
 use Spatie\Permission\Models\Role;
 
 class LogRoleAssignment
@@ -23,7 +23,7 @@ class LogRoleAssignment
         // Example: Send notification to user
         if ($model instanceof User) {
             
-            $model->notify(new RoleAssignedNotification(
+            $model->notify(new RoleAssigned(
                 roles: $roleNames,
                 assignedBy: auth()->user() // Or track admin who assigned
             ));

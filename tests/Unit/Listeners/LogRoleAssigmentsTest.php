@@ -4,7 +4,7 @@ namespace Tests\Unit;
 
 use Tests\TestCase; 
 use App\Models\User;
-use App\Notifications\RoleAssignedNotification;
+use App\Notifications\RoleAssigned;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Spatie\Permission\Events\RoleAttached;
@@ -24,7 +24,7 @@ class LogRoleAssigmentsTest extends TestCase
 
         Notification::assertSentTo(
             $user,
-            RoleAssignedNotification::class
+            RoleAssigned::class
         );
     }
 }

@@ -7,6 +7,7 @@ use App\Enums\RoleEnum;
 use App\Http\Controllers\Controller;
 use App\Models\RoleAppeal;
 use App\Models\User;
+use App\Notifications\RoleAppealResolved;
 use Illuminate\Http\Request;
 use LaravelJsonApi\Core\Document\Error;
 use LaravelJsonApi\Core\Responses\RelatedResponse;
@@ -69,6 +70,12 @@ class RoleAppealController extends Controller
             $user = $roleAppeal->user;
 
             $user->assignRole($role->name);
+            $user->notify(new RoleAppealResolved(
+                result: $newStatus,
+                roles: [$role->name],
+                assignedBy: auth()->user() // Or track admin who assigned
+            ));
+
         } else {
 
         }
