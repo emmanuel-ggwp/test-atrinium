@@ -2,7 +2,7 @@
 
 namespace App\Enums;
 
-enum AppealRoleStatusEnum: string
+enum RoleAppealStatusEnum: string
 {
     case STATUS_PENDING = 'pending';
     case STATUS_ACEPTED = 'acepted';

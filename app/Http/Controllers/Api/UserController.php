@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Enums\AppealRoleStatusEnum;
 use App\Enums\RoleEnum;
 use App\Http\Controllers\Controller;
 use App\Models\RoleAppeal;
@@ -18,34 +17,6 @@ class UserController extends Controller
         'data.attributes.roles' => 'required|array',
         'data.attributes.roles.*' => 'string|exists:roles,name'
     ];
-
-    public function appealNewRoles(Request $request)
-    {
-        $validated = $request->validate(self::RULES_ROLES);
-
-        $roles = $this->validateOnlyValidRoles($validated);
-
-        if ($roles instanceof Error) {
-            return $roles;
-        }
-
-        \Log::info(' auth()->id() '.  auth()->id());
-
-        $role_ids = Role::whereIn('name', $roles)->pluck('id')->toArray();
-
-
-        foreach ($role_ids as $role_id) {
-            RoleAppeal::create([
-                'user_id' => auth()->id(),
-                'role_id' => $role_id,
-                'status' => AppealRoleStatusEnum::STATUS_PENDING,
-            ]);
-        }
-
-        return response()->json([
-            'message' => 'Roles appeals created successfully',
-        ]);
-}
 
     public function assignRoles(Request $request, User $user)
     {

@@ -1,8 +1,7 @@
 <?php
 
-use App\Enums\PermissionEnum;
+use App\Http\Controllers\Api\RoleAppealController;
 use App\Http\Controllers\Api\UserController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthenticationApiController;
 use LaravelJsonApi\Laravel\Facades\JsonApiRoute;
@@ -19,7 +18,13 @@ JsonApiRoute::server('v1')->prefix('v1')->resources(function (ResourceRegistrar 
 });
 
 Route::prefix('v1/users')->middleware('auth:sanctum')->group(callback: function () {
-    Route::post('/appeal-new-roles', [UserController::class, 'appealNewRoles']);
+    Route::prefix('role-appeal')->group(function () {
+        Route::post('', [RoleAppealController::class, 'store']);
+        Route::post('/{roleAppeal}/resolve', [RoleAppealController::class, 'resolve'])
+            ->middleware(['permission:resolve-role-appeal']);
+    });
+
+
     Route::patch('/{user}/roles', [UserController::class, 'assignRoles'])
         ->middleware(['permission:assign-roles-user']);
 });
