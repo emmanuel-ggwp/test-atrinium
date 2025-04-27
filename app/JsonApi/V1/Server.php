@@ -2,6 +2,7 @@
 
 namespace App\JsonApi\V1;
 
+use App\JsonApi\V1\RoleAppeals\RoleAppealSchema;
 use App\JsonApi\V1\Users\UserSchema;
 use Auth;
 use LaravelJsonApi\Core\Server\Server as BaseServer;
@@ -35,6 +36,7 @@ class Server extends BaseServer
     {
         return [
             UserSchema::class,
+            RoleAppealSchema::class,
         ];
     }
 }

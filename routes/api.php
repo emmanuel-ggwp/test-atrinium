@@ -19,7 +19,7 @@ JsonApiRoute::server('v1')->prefix('v1')->resources(function (ResourceRegistrar 
 });
 
 Route::prefix('v1/users')->middleware('auth:sanctum')->group(callback: function () {
-    Route::post('/request-new-roles', [UserController::class, 'requestNewRoles']);
+    Route::post('/appeal-new-roles', [UserController::class, 'appealNewRoles']);
     Route::patch('/{user}/roles', [UserController::class, 'assignRoles'])
         ->middleware(['permission:assign-roles-user']);
 });
