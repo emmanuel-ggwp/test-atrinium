@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\CompanyController;
 use App\Http\Controllers\Api\RoleAppealController;
 use App\Http\Controllers\Api\UserController;
 use Illuminate\Support\Facades\Route;
@@ -16,7 +17,7 @@ Route::prefix('auth')->group(function (): void {
 
 JsonApiRoute::server('v1')->prefix('v1')->resources(function (ResourceRegistrar $server) {
     $server->resource('users', JsonApiController::class);
-    $server->resource('companies', JsonApiController::class)->relationships(function (Relationships $relations) {
+    $server->resource('companies', CompanyController::class)->relationships(function (Relationships $relations) {
         $relations->hasOne('owner')->readOnly();
         $relations->hasMany('activityTypes')->readOnly();
     });

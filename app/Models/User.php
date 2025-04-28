@@ -9,8 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use
-Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class User extends Authenticatable
 {
@@ -55,5 +54,10 @@ class User extends Authenticatable
     public function roleApeal(): HasMany
     {
         return $this->hasMany(RoleAppeal::class);
+    }
+
+    public function company(): HasOne
+    {
+        return $this->hasOne(Company::class, 'owner_id');
     }
 }
