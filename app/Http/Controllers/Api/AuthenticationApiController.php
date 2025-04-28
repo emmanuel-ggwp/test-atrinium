@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Symfony\Component\HttpFoundation\Response;
+use LaravelJsonApi\Core\Document\Error;
+use LaravelJsonApi\Core\Responses\ErrorResponse;
 
 class AuthenticationApiController extends Controller
 {
@@ -17,9 +18,14 @@ class AuthenticationApiController extends Controller
         ]);
 
         if (!Auth::attempt($credentials)) {
-            return response()->json([
-                'message' => 'Invalid credentials'
-            ], Response::HTTP_UNAUTHORIZED);
+            $error = Error::make()
+                ->setCode('INVALID_CREDENTIALS')
+                ->setTitle('Conflict')
+                ->setDetail('The email or the password is incorrect.')
+                ->setStatus(401);
+
+            return ErrorResponse::make($error)
+                ->withHeaders(['Content-Type' => 'application/vnd.api+json']);
         }
 
         $token = Auth::user()->createToken('api-token')->plainTextToken;

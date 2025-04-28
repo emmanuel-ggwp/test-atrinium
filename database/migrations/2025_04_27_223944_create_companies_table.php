@@ -14,6 +14,15 @@ return new class extends Migration
         Schema::create('companies', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('phone')->nullable();
+            $table->string('email');
+            $table->string('website')->nullable();
+            $table->string('address')->nullable();
+            $table->string('state');
+            $table->string('country');
+            $table->string('document_type');
+            $table->string('document');
+            $table->string('status');
             $table->foreignId('owner_id')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });

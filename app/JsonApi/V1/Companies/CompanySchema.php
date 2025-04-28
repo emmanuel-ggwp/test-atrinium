@@ -34,7 +34,24 @@ class CompanySchema extends Schema
     {
         return [
             ID::make(),
-            Str::make("name"),
+            Str::make('name')
+                ->sortable(),
+            Str::make('phone'),
+            Str::make('email')
+                ->sortable(),
+            Str::make('website'),
+            Str::make('document_type')
+                ->sortable(),
+            Str::make('address')
+                ->sortable(),
+            Str::make('state')
+                ->sortable(),
+            Str::make('country')
+                ->sortable(),
+            Str::make('document')
+                ->sortable(),
+            Str::make('status')
+                ->sortable(),
             BelongsTo::make('owner')->type('users')->readOnly(),
             BelongsToMany::make('activityTypes'),
             DateTime::make('createdAt')->sortable()->readOnly(),

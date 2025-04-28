@@ -8,12 +8,14 @@ enum RoleEnum: string
     case ADMIN = 'admin';
 
     case USER = 'user';
+    case COMPANY_MANAGER = 'company-manager';
 
     public function label(): string
     {
         return match ($this) {
             static::SUPER_ADMIN => 'Super Admin',
             static::ADMIN => 'Admin',
+            static::COMPANY_MANAGER => 'Company manager',
             static::USER => 'User',
         };
     }
@@ -29,6 +31,14 @@ enum RoleEnum: string
                 PermissionEnum::UPDATE_USER->value,
                 PermissionEnum::ASSIGN_ROLES_USER->value,
                 PermissionEnum::RESOLVE_ROLE_APPEAL->value,
+                PermissionEnum::VIEW_COMPANY->value,
+                PermissionEnum::VIEW_ANY_COMPANIES->value,
+                PermissionEnum::CREATE_COMPANY->value,
+                PermissionEnum::UPDATE_COMPANY->value,
+                PermissionEnum::DELETE_COMPANY->value,
+            ],
+            self::COMPANY_MANAGER => [
+                PermissionEnum::CREATE_COMPANY->value,
             ],
             default => [],
         };

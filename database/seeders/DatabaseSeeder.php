@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Enums\CompanyStatusEnum;
+use App\Enums\DocumentTypeEnum;
 use App\Enums\RoleEnum;
 use App\Models\ActivityType;
 use App\Models\Company;
@@ -47,6 +49,14 @@ class DatabaseSeeder extends Seeder
         $user->assignRole(RoleEnum::USER);
         $company = new Company([
             'name' => 'Company 1',
+            'email'=> 'Comapny@gmail.com',
+            'website' => 'www.company.com',
+            'address' => 'Address 1',
+            'state' => 'State 1',
+            'country' => 'Country 1',
+            'document_type' => DocumentTypeEnum::DNI->value,
+            'document' => '123456789',
+            'status' => CompanyStatusEnum::ACTIVE->value,
         ]);
 
         $company->owner()->associate($admin)->save();
