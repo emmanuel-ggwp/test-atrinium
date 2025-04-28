@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\CompanyController;
 use App\Http\Controllers\Api\RoleAppealController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\ConvertionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthenticationApiController;
 use LaravelJsonApi\Laravel\Facades\JsonApiRoute;
@@ -22,17 +23,20 @@ JsonApiRoute::server('v1')->prefix('v1')->resources(function (ResourceRegistrar 
         $relations->hasMany('activityTypes')->readOnly();
     });
     $server->resource('activity-types', JsonApiController::class)
-    ->only('index', 'show', 'store');
+        ->only('index', 'show', 'store');
 });
+Route::prefix('v1/')->middleware('auth:sanctum')->group(callback: function () {
+    Route::post('/convert', [ConvertionController::class, 'convert']);
 
-Route::prefix('v1/users')->middleware('auth:sanctum')->group(callback: function () {
-    Route::prefix('role-appeal')->group(function () {
-        Route::post('', [RoleAppealController::class, 'store']);
-        Route::post('/{roleAppeal}/resolve', [RoleAppealController::class, 'resolve'])
-            ->middleware(['permission:resolve-role-appeal']);
+    Route::prefix('users')->middleware('auth:sanctum')->group(callback: function () {
+        Route::prefix('role-appeal')->group(function () {
+            Route::post('', [RoleAppealController::class, 'store']);
+            Route::post('/{roleAppeal}/resolve', [RoleAppealController::class, 'resolve'])
+                ->middleware(['permission:resolve-role-appeal']);
+        });
+
+
+        Route::patch('/{user}/roles', [UserController::class, 'assignRoles'])
+            ->middleware(['permission:assign-roles-user']);
     });
-
-
-    Route::patch('/{user}/roles', [UserController::class, 'assignRoles'])
-        ->middleware(['permission:assign-roles-user']);
 });
