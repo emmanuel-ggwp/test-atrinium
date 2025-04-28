@@ -21,6 +21,8 @@ JsonApiRoute::server('v1')->prefix('v1')->resources(function (ResourceRegistrar 
         $relations->hasOne('owner')->readOnly();
         $relations->hasMany('activityTypes')->readOnly();
     });
+    $server->resource('activity-types', JsonApiController::class)
+    ->only('index', 'show', 'store');
 });
 
 Route::prefix('v1/users')->middleware('auth:sanctum')->group(callback: function () {

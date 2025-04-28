@@ -36,9 +36,15 @@ enum RoleEnum: string
                 PermissionEnum::CREATE_COMPANY->value,
                 PermissionEnum::UPDATE_COMPANY->value,
                 PermissionEnum::DELETE_COMPANY->value,
+                PermissionEnum::VIEW_ANY_ACTIVITY_TYPE_POLICY->value,
+                PermissionEnum::VIEW_ACTIVITY_TYPE_POLICY->value,
+                PermissionEnum::CREATE_ACTIVITY_TYPE_POLICY->value,
             ],
             self::COMPANY_MANAGER => [
                 PermissionEnum::CREATE_COMPANY->value,
+                PermissionEnum::VIEW_ANY_ACTIVITY_TYPE_POLICY->value,
+                PermissionEnum::VIEW_ACTIVITY_TYPE_POLICY->value,
+                PermissionEnum::CREATE_ACTIVITY_TYPE_POLICY->value,
             ],
             default => [],
         };

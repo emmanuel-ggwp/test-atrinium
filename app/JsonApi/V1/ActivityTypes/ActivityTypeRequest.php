@@ -1,12 +1,10 @@
 <?php
 
-namespace App\JsonApi\V1\Posts;
+namespace App\JsonApi\V1\ActivityTypes;
 
-use Illuminate\Validation\Rule;
 use LaravelJsonApi\Laravel\Http\Requests\ResourceRequest;
-use LaravelJsonApi\Validation\Rule as JsonApiRule;
 
-class PostRequest extends ResourceRequest
+class ActivityTypeRequest extends ResourceRequest
 {
 
     /**
@@ -17,7 +15,7 @@ class PostRequest extends ResourceRequest
     public function rules(): array
     {
         return [
-            // @TODO
+            'name' => ['required', 'string'],
         ];
     }
 

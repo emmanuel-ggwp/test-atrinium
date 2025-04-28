@@ -16,6 +16,9 @@ enum PermissionEnum: string
     case CREATE_COMPANY = 'create-company';
     case UPDATE_COMPANY = 'update-company';
     case DELETE_COMPANY = 'delete-company';
+    case VIEW_ACTIVITY_TYPE_POLICY = 'view-activity-type';
+    case VIEW_ANY_ACTIVITY_TYPE_POLICY = 'view-activity-types';
+    case CREATE_ACTIVITY_TYPE_POLICY = 'create-activity-type';
 
     public static function all(): array
     {

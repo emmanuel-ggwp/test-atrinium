@@ -40,6 +40,14 @@ class DatabaseSeeder extends Seeder
 
         $admin->assignRole(RoleEnum::ADMIN);
 
+        $companyManager = User::factory()->create([
+            'name' => 'Company manager',
+            'email' => 'company_manager@example.com',
+            'password' => bcrypt('password'),
+        ]);
+
+        $companyManager->assignRole(RoleEnum::COMPANY_MANAGER);
+
         $user = User::factory()->create([
             'name' => 'User',
             'email' => 'user@example.com',
@@ -59,7 +67,7 @@ class DatabaseSeeder extends Seeder
             'status' => CompanyStatusEnum::ACTIVE->value,
         ]);
 
-        $company->owner()->associate($admin)->save();
+        $company->owner()->associate($companyManager)->save();
 
         $activityType1 = ActivityType::create([
             'name' => 'Activity Type 1',
