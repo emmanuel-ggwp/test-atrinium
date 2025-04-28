@@ -1,8 +1,13 @@
 <?php
 
-use Illuminate\Foundation\Inspiring;
-use Illuminate\Support\Facades\Artisan;
+use App\Console\Commands\ImportEcbExchangeRates;
+use Illuminate\Console\Scheduling\Schedule;
 
-Artisan::command('inspire', function () {
-    $this->comment(Inspiring::quote());
-})->purpose('Display an inspiring quote');
+Artisan::command('import:ecb-exchange-rates', function () {
+    (new ImportEcbExchangeRates)->handle();
+})->describe('Imports ECB exchange rates.');
+
+app()->booted(function () {
+    $schedule = app(Schedule::class);
+    $schedule->command('import:ecb-exchange-rates')->daily();
+});
