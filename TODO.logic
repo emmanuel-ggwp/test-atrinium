@@ -4,3 +4,5 @@ permita a los nuevos usuarios solicitar cambios de rol a los administradores
 Nota: Significa que solo los usuario nuevos pueden solicitar cambio de rol?
 
 2: Los administradores pueden editar los roles de otros administradores?
+
+3: Se va a necesitar hacer ademas de solicitud de roles otra tipo de solicitudes, para unificarlas en una sola tabla

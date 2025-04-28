@@ -1,17 +1,20 @@
+warning:
+- Make the roles, companyStatus, typeDocuments GET endpoint with the enum
+- Make users/3/role-appeal/ Get
+
+info:
+- RoleAppealController:resolve only let resolve if is in status PENDING
+- Ignore the role appeal if the user already have the role or if an appeal in status pending is in the database
+
 - The response for not having the rigth permissions is "This action is unauthorized." instead of "You do not have the rigth permissions"
 
 - Use a external service of mail like Mailgun, Postmark, Resend, and MailerSend, In case of use a own SMTP server remember to warm up so the mails send not get send to spam
 
-- If want to use notification bell in a front app run the following commands:
-  php artisan notifications:table
-  php artisan migrate
-
-  And add this to UserNewRoleNotification
-  public function via($notifiable)
-  {
-      return ['mail', 'database']; //Added database
-  }
-
 - Make so not malicious person can create so many users, we can start with a rateLimit or one user by ip
 
 - Add status (active, inactive), and new to users
+
+verbose:
+- Add display_name to Role
+
+- Change the table role_appeal to have a child table with role_appeal_id role_id to have only one record for appeal
