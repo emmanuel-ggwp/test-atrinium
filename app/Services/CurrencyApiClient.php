@@ -31,9 +31,9 @@ class CurrencyApiClient
             $data = $response->json();
 
             if (!$response->successful() || !$data['success']) {
-
-                if(isset($data['error']['code']) && $data['error']['code'] === 105) {
-                    return 'Base Currency Access Restricted';
+                if(isset($data['error']['code'])) {
+                    if($data['error']['code'] === 105) return 'Base Currency Access Restricted';
+                    if($data['error']['code'] === 101) return 'Problem with the external API';
                 }
                 Log::error('Fixer.io API error', [
                     'response' => $data,
